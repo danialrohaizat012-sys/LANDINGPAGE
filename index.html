@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pautan Saya</title>
+  <meta name="description" content="Semua pautan penting di satu tempat — Belia Connect, Connect Card, Bine Menu, Meney Gaming." />
+  <meta property="og:title" content="Pautan Saya" />
+  <meta property="og:description" content="Semua pautan penting di satu tempat." />
+  <meta name="theme-color" content="#0f1222" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="profile">
+      <!-- Tukar gambar profil: letak fail "avatar.jpg" dalam folder ini dan buang komen di bawah -->
+      <!-- <img class="avatar" src="avatar.jpg" alt="Gambar profil" /> -->
+      <div class="avatar avatar-fallback" id="avatar" aria-hidden="true"></div>
+      <h1 id="name"></h1>
+      <p class="bio" id="bio"></p>
+    </header>
+
+    <nav class="links" id="links" aria-label="Pautan"></nav>
+
+    <div class="socials" id="socials"></div>
+
+    <footer class="foot">© <span id="year"></span> <span id="footName"></span></footer>
+  </main>
+
+  <script src="links.js"></script>
+  <script>
+    (function () {
+      var c = window.CONFIG;
+      document.title = c.name;
+      document.getElementById("name").textContent = c.name;
+      document.getElementById("bio").textContent = c.bio;
+      document.getElementById("footName").textContent = c.name;
+      document.getElementById("year").textContent = new Date().getFullYear();
+      var av = document.getElementById("avatar");
+      if (av) av.textContent = c.initials;
+
+      var list = document.getElementById("links");
+      c.links.forEach(function (l, i) {
+        var a = document.createElement("a");
+        a.className = "link" + (l.highlight ? " highlight" : "");
+        a.href = l.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.style.animationDelay = (i * 70) + "ms";
+        a.innerHTML =
+          '<span class="icon" aria-hidden="true"></span>' +
+          '<span class="text"><strong></strong><small></small></span>' +
+          '<span class="arrow" aria-hidden="true">→</span>';
+        a.querySelector(".icon").textContent = l.icon || "🔗";
+        a.querySelector("strong").textContent = l.title;
+        if (l.subtitle) a.querySelector("small").textContent = l.subtitle;
+        else a.querySelector("small").remove();
+        list.appendChild(a);
+      });
+
+      var soc = document.getElementById("socials");
+      (c.socials || []).forEach(function (s) {
+        if (!s.url) return;
+        var a = document.createElement("a");
+        a.href = s.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = s.label;
+        soc.appendChild(a);
+      });
+    })();
+  </script>
+</body>
+</html>
