@@ -29,9 +29,9 @@ window.CONFIG = {
       icon: "🍽️"
     },
     {
-      title: "Website Meney Gaming",
-      subtitle: "Lawati laman web",
-      url: "https://GANTI-LINK-MENEY-GAMING",
+      title: "Meney Gaming",
+      subtitle: "Catalogue, WhatsApp & lokasi kedai",
+      url: "https://meneylandingpage.vercel.app",
       icon: "🎮"
     }
   ],
